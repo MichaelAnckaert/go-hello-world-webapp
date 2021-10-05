@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM golang:1.17 AS builder
 WORKDIR /go/src/github.com/michaelanckaert/go-hello-world-webapp
-COPY main.go ./
+COPY app.go ./
 COPY go.mod ./
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
