@@ -1,16 +1,23 @@
 package main
 
 import (
-    "fmt"
-    "log"
-    "net/http"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+	message := os.Getenv("MESSAGE")
+	if len(message) == 0 {
+		message = "Hello"
+	}
+	environment := os.Getenv("ENVIRONMENT")
+	fmt.Fprintf(w, "%s world! We're running in %s", message, environment)
 }
 
 func main() {
-    http.HandleFunc("/", handler)
-    log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Print("Starting 'hello-world-service'...")
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
