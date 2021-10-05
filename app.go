@@ -6,11 +6,11 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 )
 
 type Message struct {
 	Message string `json:"message"`
+	Version string `json:"version"`
 }
 
 func getMessage() (*Message, error) {
@@ -37,8 +37,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	environment := os.Getenv("ENVIRONMENT")
-	fmt.Fprintf(w, "%s We're running in environment %s", message.Message, environment)
+	fmt.Fprintf(w, "%s (greeter-service: %s)", message.Message, message.Version)
 }
 
 func main() {
