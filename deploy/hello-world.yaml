@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: michaelanckaert/go-hello-world-webapp:v1
+        image: michaelanckaert/go-hello-world-webapp:v3
         envFrom:
           - configMapRef:
               name: hello-config

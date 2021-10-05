@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: goodbye-config 
-data:
-  MESSAGE: Goodbye
-  ENVIRONMENT: dev
